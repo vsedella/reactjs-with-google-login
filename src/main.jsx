@@ -7,6 +7,7 @@ import AuthProvider from './context/LoginContext.jsx';
 import Home from './components/Home.jsx';
 import Search from './components/Search.jsx';
 import Contact from './components/Contact.jsx';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const routeConfiguration = createBrowserRouter([
   {
@@ -34,7 +35,9 @@ const routeConfiguration = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <AuthProvider>
-    <RouterProvider router={routeConfiguration} />
-  </AuthProvider>
+  <GoogleOAuthProvider clientId='895590734872-j01jj18jnddec3odl5oh8deqoh8a16cg.apps.googleusercontent.com'>
+    <AuthProvider>
+      <RouterProvider router={routeConfiguration} />
+    </AuthProvider>
+  </GoogleOAuthProvider>
 )

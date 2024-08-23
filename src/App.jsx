@@ -1,22 +1,23 @@
 import { Navigate, Outlet, NavLink } from "react-router-dom";
 import "./App.css";
 import { useLoginContext } from "./context/LoginContext";
+import UserInfo from "./components/UserInfo";
 
 function App() {
-  const { user } = useLoginContext();
-  console.log("user is ", user);
-  const loggedIn = !!user;
-  const defaultLinkStyle = "text-xl text-indigo-500 active";
+  const { userInfo, onLogOut } = useLoginContext();
+  console.log("user is ", userInfo);
+  const loggedIn = !!userInfo;
+  const defaultLinkStyle = "text-xl text-indigo-500 ";
   const activeLinkStyle = `underline underline-offset-8 ${defaultLinkStyle}`;
   return (
     <>
       {loggedIn && (
         <div className="flex">
           <div className="w-1/5 h-screen border-2 border-r-indigo-500">
-            <div className="h-1/6 items-center justify-center flex">
-              <p> Hello User : {user}</p>
+            <div className="h-2/6">
+              <UserInfo {...userInfo} ></UserInfo>
             </div>
-            <div className="h-5/6 items-center justify-center flex flex-col gap-10">
+            <div className="h-4/6 items-center justify-center flex flex-col gap-10">
               <NavLink
                 to="/"
                 className={({ isActive }) =>
@@ -41,6 +42,11 @@ function App() {
               >
                 Contact
               </NavLink>
+
+                <button onClick={() => onLogOut()} className="text-xl text-white bg-indigo-400 border-2 border-white rounded-lg p-1">
+                  Logout
+                </button>
+
             </div>
           </div>
           <div className="w-4/5">

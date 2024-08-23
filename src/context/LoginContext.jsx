@@ -1,20 +1,20 @@
 import { createContext, useContext, useState } from "react";
 
 const LoginContext = createContext({
-    user: null,
+    userInfo: null,
     onLogin: () => {},
     onLogOut: () => {}
 });
 const AuthProvider = ({children}) => {
-    const [user, setUser] = useState(null);
-    const onLogin = function(token){
-        setUser(token);
+    const [userInfo, setUserInfo] = useState(null);
+    const onLogin = function(userObject){
+        setUserInfo(userObject);
     }
     const onLogOut = function(){
-        setUser(null);
+        setUserInfo(null);
     }
     const providerValue = {
-        user, 
+        userInfo, 
         onLogin,
         onLogOut
     }
