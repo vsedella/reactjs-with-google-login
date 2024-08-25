@@ -1,3 +1,4 @@
+import { googleLogout } from "@react-oauth/google";
 import { createContext, useContext, useState } from "react";
 
 const LoginContext = createContext({
@@ -11,6 +12,7 @@ const AuthProvider = ({children}) => {
         setUserInfo(userObject);
     }
     const onLogOut = function(){
+        googleLogout();
         setUserInfo(null);
     }
     const providerValue = {
