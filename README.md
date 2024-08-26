@@ -8,7 +8,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 To Run the Application : 
-1) Install NPM
+1) Install Node.js & NPM
 2) Check out the project
 3) run "npm i"
 4) Once all the dependencies are installed run "npm run dev". It will run a local vite server.
