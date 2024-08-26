@@ -26,16 +26,20 @@ export default function Search() {
             startIndex = searchResults ? searchResults?.queries?.nextPage[0]?.startIndex : 0;
             pageNumberToSet = pageNumber + 1;
         }
-        const searchResult = await fetch(`${SEARCH_API}&q=${searchString}&start=${startIndex}`);
-        if (searchResult.ok) {
-          const result = await searchResult.json();
-          setSearchResults(result);
-          setPageNumber(pageNumberToSet);
-          setError(null);
-        }else{
+        try{
+          const searchResult = await fetch(`${SEARCH_API}&q=${searchString}&start=${startIndex}`);
+          if (searchResult.ok) {
             const result = await searchResult.json();
-            setError(result.error.message);
-            setSearchResults(null);
+            setSearchResults(result);
+            setPageNumber(pageNumberToSet);
+            setError(null);
+          }else{
+              const result = await searchResult.json();
+              setError(result.error.message);
+              setSearchResults(null);
+          }
+        }catch(error){
+          setError(error?.message || 'Failed to fetch the API');
         }
         setSearchInProgres(false);
     }else{
@@ -71,7 +75,7 @@ export default function Search() {
           Submit
         </button>
       </div>
-      {error && <p className="font-bold text-red-400 mt-2"> { error }</p>}
+      {error && <p className="font-bold text-red-400 mt-2 ml-5"> { error }</p>}
       { searchResults?.items?.length && <div className="mt-2 ">
         <div className="max-h-[600px] overflow-x-hidden overflow-y-scroll">
         <div className="ml-10 mr-10">
