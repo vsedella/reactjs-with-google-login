@@ -6,3 +6,10 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+To Run the Application : 
+1) Install NPM
+2) Check out the project
+3) run "npm i"
+4) Once all the dependencies are installed run "npm run dev". It will run a local vite server.
+5) navigate to http://localhost:5173/
