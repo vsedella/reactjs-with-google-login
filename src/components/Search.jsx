@@ -2,7 +2,7 @@ import { useState } from "react";
 import SearchResult from "./SearchResult";
 
 const SEARCH_API =
-  "https://www.googleapis.com/customsearch/v1?key=AIzaSyAjAHi_qxAqW1KyJeNjcDwZ6jHWedoBSG4&cx=220350f05d56c4b1c&fields=items(title,link,snippet),queries(previousPage/startIndex,nextPage/startIndex)";
+  `https://www.googleapis.com/customsearch/v1?key=${import.meta.env.VITE_API_KEY}&cx=${import.meta.env.VITE_SEARCH_ENGINE_ID}&fields=items(title,link,snippet),queries(previousPage/startIndex,nextPage/startIndex)`;
 
 export default function Search() {
   const [searchResults, setSearchResults] = useState(null);
@@ -90,13 +90,13 @@ export default function Search() {
         <div className="flex flex-row gap-10 justify-center items-center">
             <button 
                 type="button" 
-                className={`text-indigo-500 font-bold ${disablePrevious ? 'cursor-not-allowed' : 'cursor-pointer'}`} 
+                className={`text-indigo-500 font-bold ${disablePrevious ? 'cursor-not-allowed text-gray-500' : 'cursor-pointer'}`} 
                 disabled={disablePrevious}
                 onClick={() => initiateSearch('previous')}> Previous </button>
             <button type="button" className="text-indigo-500 font-bold cursor-default"> Page {pageNumber} </button>
             <button 
                 type="button" 
-                className={`text-indigo-500 font-bold ${disableNext ? 'cursor-not-allowed' : 'cursor-pointer'}`} 
+                className={`text-indigo-500 font-bold ${disableNext ? 'cursor-not-allowed text-gray-500' : 'cursor-pointer'}`} 
                 disabled={disableNext}
                 onClick={() => initiateSearch('next')}> Next </button>
         </div>

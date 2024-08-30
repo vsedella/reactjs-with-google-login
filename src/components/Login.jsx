@@ -10,7 +10,6 @@ export default function Login() {
   
   const onLoginHandler = useGoogleLogin({
     onSuccess: async (response) => {
-      console.log('inside on Success with response : ', response);
       setLoginInProgress(true);
       const userData = await fetch(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${response.access_token}`, {
         method: 'GET',
@@ -20,14 +19,11 @@ export default function Login() {
         }
       });
       if (userData.ok){
-        console.log('onSuccess -> IF');
         const userInfo = await userData.json();
-        console.log('userInfo from google API is :', userInfo);
         onLogin(userInfo);
         navigate('/');
         setLoginInProgress(false);
       }else{
-        console.log('onSuccess -> ELSE');
         setLoginInProgress(false);
       }
     },
@@ -43,15 +39,6 @@ export default function Login() {
       >
         {loginInProgress ? 'Login with Google in progress....' : 'Login with Google'}
       </button>
-
-{/* <GoogleLogin
-  onSuccess={credentialResponse => {
-    console.log(credentialResponse);
-  }}
-  onError={() => {
-    console.log('Login Failed');
-  }}
-/>; */}
     </div>
   );
 }

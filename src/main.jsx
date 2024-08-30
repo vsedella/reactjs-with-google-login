@@ -35,7 +35,7 @@ const routeConfiguration = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <GoogleOAuthProvider clientId='895590734872-j01jj18jnddec3odl5oh8deqoh8a16cg.apps.googleusercontent.com'>
+  <GoogleOAuthProvider clientId={import.meta.env.VITE_CLIENT_ID}>
     <AuthProvider>
       <RouterProvider router={routeConfiguration} />
     </AuthProvider>
